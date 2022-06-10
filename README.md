@@ -1,24 +1,16 @@
-# README
+# HomedayApp
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## System dependencies and requirements
+* Ruby version '2.7.2'
+* Rails version: '6.0.5'
 
-Things you may want to cover:
+### Configuration
+* setup Postgresql
 
-* Ruby version
+  rails db:create
+  rails db:migrate
 
-* System dependencies
+  rake realtor:fill_db_with_realtors
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+#### run the test (RSpec)
+  bundle exec rspec
