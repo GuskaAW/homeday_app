@@ -1,0 +1,39 @@
+
+Style/Documentation:
+  Enabled: false
+
+Style/VariableNumber:
+  Enabled: false
+
+AllCops:
+  Exclude:
+    - 'db/schema.rb'
+    - 'db/migrate/**'
+    - 'bin/yarn'
+  DisplayCopNames: true
+  TargetRubyVersion: 2.5.1p57
+
+Metrics/BlockLength:
+  IgnoredMethods: ['describe', 'context']
+  Max: 1000
+
+Metrics/MethodLength:
+  Max: 100
+
+Metrics/ClassLength:
+  Max: 1000
+
+Style/ClassAndModuleChildren:
+  EnforcedStyle: compact # https://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Style/ClassAndModuleChildren
+
+Style/SymbolArray:
+  EnforcedStyle: brackets # https://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Style/SymbolArray
+
+Layout/ArgumentAlignment:
+  EnforcedStyle: with_first_argument
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+StringLiterals:
+  Enabled: false
