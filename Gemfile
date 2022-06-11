@@ -6,6 +6,7 @@ gem 'rails', '~> 6.0.4', '>= 6.0.4.1'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 4.1'
 
+gem 'activerecord-postgres-earthdistance'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'jbuilder', '~> 2.7'
 gem 'sass-rails', '>= 6'

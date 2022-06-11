@@ -45,6 +45,10 @@ GEM
     activerecord (6.0.5)
       activemodel (= 6.0.5)
       activesupport (= 6.0.5)
+    activerecord-postgres-earthdistance (0.7.2)
+      activerecord (>= 3.1)
+      pg
+      rake
     activestorage (6.0.5)
       actionpack (= 6.0.5)
       activejob (= 6.0.5)
@@ -212,6 +216,7 @@ PLATFORMS
   x86_64-darwin-19
 
 DEPENDENCIES
+  activerecord-postgres-earthdistance
   bootsnap (>= 1.4.2)
   byebug
   jbuilder (~> 2.7)
