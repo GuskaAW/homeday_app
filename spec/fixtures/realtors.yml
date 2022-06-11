@@ -1,0 +1,44 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# This model initially had no columns defined. If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+realtor_1: 
+  id: 1
+  name: 'Zelma Hammersley'
+  city: 'Berlin'
+  lat: 52.090389
+  lng: 13.163691
+
+realtor_2:
+  id: 2
+  name: 'Kirby Mcgahey'
+  city: 'Gerolzhofen'
+  lat: 52.520008
+  lng: 13.404954 
+
+realtor_3:
+  id: 3
+  name: 'Deann Mcgonigal'
+  city: 'Braunschweig'
+  lat: 48.366512
+  lng: 10.894446
+
+realtor_4:
+  id: 4
+  name: 'Shawna Astudillo'
+  city: 'Freiburg'
+  lat: 48.758339
+  lng: 8.243008
+
+
+# name: 'Sheryll Hayes', city: 'Munich', 'lat': 51.099998, 'lng': 7.116667 },
+# name: 'Kattie Hays', city: 'Grimma', 'lat': 52.021111, 'lng': 8.534722 },
+# name: 'Anh Easter', city: 'Krefeld', 'lat': 51.481846, 'lng': 7.216236 },
+# name: 'Cythia Rew', city: 'Osnabrück', 'lat': 50.733334, 'lng': 7.1 },
+# name: 'Abe Huskins', city: 'Kiel', 'lat': 51.524723, 'lng': 6.922778 },
+# { name: 'Joannie Harshaw', city: 'Solingen', 'lat': 52.266666, 'lng': 10.516667 },
+# { name: 'Latanya Ogle', city: 'Göttingen', 'lat': 53.073635, 'lng': 8.806422 },
+# { name: 'Indira Splawn', city: 'Herne', 'lat': 53.549999, 'lng': 8.583333 },
+# { name: 'Nanci Traynor', city: 'Gelsenkirchen', 'lat': 50.833332, 'lng': 12.916667 },
