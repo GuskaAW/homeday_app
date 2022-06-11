@@ -10,9 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_11_090151) do
+ActiveRecord::Schema.define(version: 2022_06_11_091637) do
 
   # These are extensions that must be enabled in order to support this database
+  enable_extension "cube"
+  enable_extension "earthdistance"
   enable_extension "plpgsql"
 
   create_table "appointments", force: :cascade do |t|
@@ -24,6 +26,7 @@ ActiveRecord::Schema.define(version: 2022_06_11_090151) do
     t.decimal "lng", precision: 10, scale: 6
     t.bigint "seller_id"
     t.bigint "realtor_id"
+    t.index "ll_to_earth((lat)::double precision, (lng)::double precision)", name: "appointments_earthdistance_ix", using: :gist
     t.index ["realtor_id"], name: "index_appointments_on_realtor_id"
     t.index ["seller_id"], name: "index_appointments_on_seller_id"
   end
@@ -35,6 +38,7 @@ ActiveRecord::Schema.define(version: 2022_06_11_090151) do
     t.datetime "updated_at", precision: 6, null: false
     t.decimal "lat", precision: 10, scale: 6
     t.decimal "lng", precision: 10, scale: 6
+    t.index "ll_to_earth((lat)::double precision, (lng)::double precision)", name: "realtors_earthdistance_ix", using: :gist
   end
 
   create_table "sellers", force: :cascade do |t|
