@@ -10,28 +10,26 @@ class SetAppointmentService
                                   address: payload[:appointment][:address],
                                   time: payload[:appointment][:time])
     return missing_input if !check_appointment_params(appointment)
-    
+
     return error_no_realtor if check_if_weekend(appointment)
 
     return error_no_realtor if check_not_opening_hours(appointment)
-  
+
     return error_no_realtor if !good_range_of_days_to_appointment(appointment)
 
     point = [appointment.lat, appointment.lng]
     # radius in meters 20 000 =  20 km
     # hint: https://rdoc.info/gems/activerecord-postgres-earthdistance/0.7.1
-    closest = Realtor.within_radius(200000, *point).order_by_distance(*point).selecting_distance_from(*point).first
+    closest = Realtor.within_radius(20_000, *point).order_by_distance(*point).selecting_distance_from(*point).first
     return error_no_realtor if closest == nil
 
     seller.save
     appointment.seller = seller
     appointment.realtor = closest
     if appointment.save
-      return create_response(appointment)
-    else 
-      return missing_input
-
-      # jaki status code + Berlintime
+      create_response(appointment)
+    else
+      missing_input
     end
   end
 
@@ -43,29 +41,25 @@ class SetAppointmentService
 
   def check_if_weekend(appointment)
     # 0 Sun, 6 Sat
-    (appointment.time.wday % 7) == 0 || (appointment.time.wday % 7)  == 6
+    (appointment.time.wday % 7) == 0 || (appointment.time.wday % 7) == 6
   end
 
   def check_not_opening_hours(appointment)
-    appointment.time.strftime('%H:%M').to_i < 8 ||
-    appointment.time.strftime('%H:%M').to_i > 18
+    appointment.time.strftime('%H:%M').to_i < 8 || appointment.time.strftime('%H:%M').to_i > 18
   end
 
   def good_range_of_days_to_appointment(appointment)
-    which_day = Time.now.wday % 7 
+    which_day = Time.now.wday % 7
 
     days_to_ap = (appointment.time.to_date - DateTime.now.to_date).to_i
-  
+
     if (which_day == 1 || which_day == 2) && days_to_ap >= 3 # >48h in days - 3days
       true
-    elsif
-      (which_day == 3 || which_day == 4 || which_day == 5 ) && days_to_ap >= 5
+    elsif (which_day == 3 || which_day == 4 || which_day == 5) && days_to_ap >= 5
       true
-    elsif
-      which_day == 6 && days_to_ap >= 4
+    elsif which_day == 6 && days_to_ap >= 4
       true
-    elsif
-      which_day == 0 && days_to_ap >= 3
+    elsif which_day == 0 && days_to_ap >= 3
       true
     else
       false
@@ -75,11 +69,11 @@ class SetAppointmentService
   end
 
   def error_no_realtor
-    {message: "No realtor available", code: 400}
+    { message: "No realtor available", code: 400 }
   end
 
   def missing_input
-    {message: "Missing input values", code: 400}
+    { message: "Missing input values", code: 400 }
   end
 
   def create_response(appointment)
@@ -89,7 +83,7 @@ class SetAppointmentService
       address: appointment.address,
       time: appointment.time.strftime("%d/%m/%Y %H:%M"),
       seller: {
-        name: appointment.seller.name, 
+        name: appointment.seller.name,
         phone: appointment.seller.phone
       },
       realtor: {
@@ -97,5 +91,5 @@ class SetAppointmentService
         city: appointment.realtor.city
       }
     }
-  end 
+  end
 end

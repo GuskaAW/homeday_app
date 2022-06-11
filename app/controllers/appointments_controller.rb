@@ -13,14 +13,13 @@ class AppointmentsController < ApplicationController
         past_appointments << a
       end
     end
-    byebug
     render json: past_appointments.sort
   end
 
   def future
     realtor = Realtor.find(params[:id])
     future_appointments = Array.new
-    realtor.appointments.each do |a| 
+    realtor.appointments.each do |a|
       if a.time > DateTime.now.to_date
         future_appointments << a
       end
